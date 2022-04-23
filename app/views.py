@@ -5,11 +5,13 @@ Werkzeug Documentation:  https://werkzeug.palletsprojects.com/
 This file creates your application.
 """
 
+from crypt import methods
+from lib2to3.pytree import _Results
 from app import app,db,login_manager
 from flask import render_template, request, jsonify, send_file,redirect, url_for, flash
 from flask_login import login_user, logout_user, current_user, login_required
 import os
-from app.forms import CreateUserForm,LoginForm
+from app.forms import CreateUserForm,LoginForm,CarsForm,SearchForm
 from app.models import UserProfile, Car, Favourite
 from datetime import date
 from werkzeug.utils import secure_filename
@@ -70,6 +72,75 @@ def login():
             return redirect(url_for("home"))  # they should be redirected to a secure-page route instead
     flash_errors(form)
     return render_template("login.html", form=form)
+
+@app.route('/api/cars', methods=["GET"])
+def cars():
+    myform = CarsForm()
+    if request.method == "GET" and myform.validate_on_submit():
+        Cars = Car.query.all()
+        return render_template('cars.html',Cars)
+
+@app.route('/api/cars/addCar', methods=["POST"])
+def cars():
+    myform = CarsForm()
+    if request.method == "POST" and myform.validate_on_submit():
+        model = myform.model.data
+        make = myform.make.data
+        description = myform.description.data
+        price = myform.price.data
+        colour = myform.colour.data
+        car_type = myform.car_type.data
+        transmission = myform.transmission.data
+        year = myform.year.data
+        photo = myform.photo.data
+        car_form = Car(model,make,description,price,colour,car_type,transmission,year,photo)
+        db.session.add(car_form)
+        db.session.commit()
+    return render_template('addCar.html', form=myform)
+
+@app.route('api/car/<car_id>', methods=["GET"])
+def car_detail(car_id):
+
+    car_dets = Car.query.get(car_id)
+    if car_dets is not None:
+        model = car_dets.model
+        make = car_dets.make
+        description = car_dets.description
+        price = car_dets.price
+        colour = car_dets.colour
+        car_type = car_dets.car_type
+        transmission = car_dets.transmission
+        year = car_dets.year
+        photo = car_dets.photo
+        return render_template('car.html',model=model,make=make,description=description,price=price,colour=colour,car_type=car_type,transmission=transmission,year=year,photo=photo)
+
+# @app.route('/api/cars/<car_id>/favourite', methods=["GET"])
+# def add_favourite(id):
+#     if request.method == "POST":
+
+@app.route('/api/search', methods=['POST'])
+def search():
+    form = SearchForm()
+    car = Car.query
+    if form.validate_on_submit():
+        car.searched = form.searched.data
+        car = car.filter(Car.make.like('%' + car.searched + '%'))
+        car = car.order_by(Car.car_type).all()
+        return render_template("search.html",form=form,searched = car.searched)
+
+@app.route('/api/users/<user_id>', methods=['POST'])
+def user_detail(user_id):
+    user_dets = Car.query.get(user_id)
+    if user_dets is not None:
+        username = user_dets.username
+        password = user_dets.password
+        name = user_dets.name
+        email = user_dets.email
+        location = user_dets.location
+        biography = user_dets.biography
+        photo = user_dets.photo
+        date_joined = user_dets.date_joined
+        return render_template("profile",username=username,password=password,name=name,email=email,location=location,biography=biography,photo=photo,date_joined=date_joined)
 
 @app.route('/api/auth/logout')
 @login_required

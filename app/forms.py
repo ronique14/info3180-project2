@@ -1,3 +1,4 @@
+from msilib.schema import Class
 from models import *
 from flask_wtf import FlaskForm
 from wtforms import *
@@ -38,3 +39,18 @@ class CreateUserForm(FlaskForm):
 class LoginForm(FlaskForm):
     username = StringField('Username', validators=[validators.DataRequired()])
     password = PasswordField('Password', validators=[validators.DataRequired()])
+
+class CarsForm(FlaskForm):
+    model = stringField('Model', [validators.Length(min=1, max=80)])
+    make = stringField('Make', [validators.Length(min=1, max=80)])
+    description = TextAreaField('Description', validators=[DataRequired()])
+    price = IntegerField('Price', validators=[DataRequired()])
+    colour = StringField('Colour', validators=[DataRequired()])
+    car_type = StringField('Car type', validators=[DataRequired()])
+    transmission = StringField('Transmission', validators=[DataRequired()])
+    year = StringField('Year', validators=[DataRequired()])
+    photo = FileField('image',validators=[FileRequired(),FileAllowed(images, 'Images only!')])
+
+class SearchForm(FlaskForm):
+    searched = StringField('Make', [DataRequired()])
+    submit = SubmitField("Submit")
