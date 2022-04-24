@@ -80,8 +80,8 @@ def cars():
         Cars = Car.query.all()
         return render_template('cars.html',Cars)
 
-@app.route('/api/cars/addCar', methods=["POST"])
-def cars():
+@app.route('/api/cars/new', methods=["POST"])
+def newcar():
     myform = CarsForm()
     if request.method == "POST" and myform.validate_on_submit():
         model = myform.model.data

@@ -34,31 +34,28 @@ const router = createRouter({
       path: '/logout',
       name: 'Logout'
       
-    },{
+    },
+    {
       path: '/explore',
       name: 'Explore',
       component: () => import('../views/ExploreView.vue'),
       props: true
     },
-
     {
       path: '/users/:user_id',
       name: 'View User Profile',
       component: () => import('../views/UserProfileView.vue')
     },
-
     {
-      path: '/car/new',
-      name: 'Add New Post',
+      path: '/cars/new',
+      name: 'Add New Car',
       component: () => import('../views/NewPostView.vue')
     },
     {
       path: '/cars/:card_id',
       name: 'Detail of Car',
       component: () => import('../views/CarDetailView.vue')
-    },
-
-
+    }
   ]
 })
 
