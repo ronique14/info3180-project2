@@ -17,9 +17,10 @@ export default {
       <div id="text">
         <h2>Buy and Sell <br> Cars Online</h2>
         <p>United Auto Sales provies the fastest easiest firendly way to buy or sell cars online. Find a Great Price on the Vehicle on the Vehicle You Want.</p>
-        <div class="bttn">
-          <RouterLink type="button" class="btn btn-primary" id="btn1" to="/register">Register</RouterLink>
-          <RouterLink type="button" class="btn btn-success" id="btn2" to="/login">Login</RouterLink>
+        <div class="Cbuttons">
+          <RouterLink type="button" class="loginbtn" id="btn1" to="/register">Register</RouterLink>
+           &nbsp;&nbsp;&nbsp;
+          <RouterLink type="button" class="registerbtn" id="btn2" to="/login">Login</RouterLink>
         </div>
         
       </div>
@@ -62,9 +63,10 @@ export default {
     background-color: white;
   }
 
-<<<<<<< HEAD
    .registerbtn{
+     text-decoration: none;
     padding: 15px 38px;
+    text-align: center;
     border-radius: 10px;
     border: 1px solid transparent;
     width: 180px;
@@ -79,10 +81,12 @@ export default {
   }
 
   .loginbtn{
+    text-decoration: none;
     padding: 15px 38px;
+    text-align: center;
     border-radius: 10px;
     border: 1px solid transparent;
-    width: 180px;
+    width: 160px;
     font-size: 16px;
     letter-spacing: 1px;
     transition: all 0.15s linear; 
@@ -105,17 +109,5 @@ export default {
     color: #3c81f6;
     transform: translateY(-5px) scale(1);
 
-=======
-  #btn1{
-     color: white;
-     background-color: #3c81f6;
-    margin-right: 8px;
-  }
-
-  #btn2{
-     color: white;
-     background-color:#0fb881;
-    margin-right: 8px;
->>>>>>> b00e9472f4107c405795051e9cfe2f36573cc7eb
   }
 </style>
