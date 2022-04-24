@@ -1,14 +1,17 @@
 <script>
+ 
 export default {
     data() {
         return {
             message: "Hello World! This is Lab 7"
         };
     },
+   
 }
 </script>
 
 <template>
+ 
        <div class="con">
     <div class="homepage">
       <div id="text">
@@ -17,8 +20,8 @@ export default {
         <button type="button" class="registerbtn" id="btn1">Register</button>
         <button type="button" class="loginbtn">Login</button>
       </div>
-      <div id="car">
-        <img class="sideimage" src="../img/Car.jpg" alt="">
+      <div id="side">
+        <img class="sideimage" src="../images/sideimage.jpg" alt="">
       </div>
     </div>
   </div>
@@ -28,6 +31,7 @@ export default {
 /* Add any component specific styles here */
   h2 {
     font-size: 6em;
+    font-weight:600;
   }
 
   p {
@@ -43,7 +47,7 @@ export default {
   }
   
   .sideimage {
-    height: calc(98vh - 53px);
+    height: calc(100vh - 53px);
   }
 
   #text {
@@ -56,14 +60,46 @@ export default {
   }
 
    .registerbtn{
-     color: white;
-     background-color: #3c81f6;
-    margin-right: 8px;
+    padding: 15px 38px;
+    border-radius: 10px;
+    border: 1px solid transparent;
+    width: 180px;
+    font-size: 16px;
+    letter-spacing: 1px;
+    transition: all 0.15s linear;
+    color: white;
+    background-color: #3c81f6;
+    margin-right: 14px;
+    margin-top: 10px;
+   
   }
 
   .loginbtn{
-     color: white;
-     background-color:#0fb881;
-    margin-right: 8px;
+    padding: 15px 38px;
+    border-radius: 10px;
+    border: 1px solid transparent;
+    width: 180px;
+    font-size: 16px;
+    letter-spacing: 1px;
+    transition: all 0.15s linear; 
+    color: white;
+    background-color:#0fb881;
+     
+  }
+
+  .loginbtn:hover{
+    background-color: rgba(29, 201, 160, 0.08);
+    border-color: #0fb881;
+    color: #0fb881;
+    transform: translateY(-5px) scale(1);
+
+  }
+
+  .registerbtn:hover{
+    background-color: rgba(29, 201, 160, 0.08);
+    border-color: #3c81f6;
+    color: #3c81f6;
+    transform: translateY(-5px) scale(1);
+
   }
 </style>
