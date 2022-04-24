@@ -2,7 +2,7 @@
     <h2 class="pg-header" id="loginheader">Login to your account</h2>
     <div class="card text-left" style="width: 25rem;" id="logincard">
         <div class="card-body">
-            <form id= "RegisterForm" >
+            <form id= "LoginForm" >
                 <div class="col-auto">
                     <div class="form-group">
                         <label for="username">Username</label>

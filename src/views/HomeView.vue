@@ -17,8 +17,11 @@ export default {
       <div id="text">
         <h2>Buy and Sell <br> Cars Online</h2>
         <p>United Auto Sales provies the fastest easiest firendly way to buy or sell cars online. Find a Great Price on the Vehicle on the Vehicle You Want.</p>
-        <button type="button" class="registerbtn" id="btn1">Register</button>
-        <button type="button" class="loginbtn">Login</button>
+        <div class="bttn">
+          <RouterLink type="button" class="btn btn-primary" id="btn1" to="/register">Register</RouterLink>
+          <RouterLink type="button" class="btn btn-success" id="btn2" to="/login">Login</RouterLink>
+        </div>
+        
       </div>
       <div id="side">
         <img class="sideimage" src="../images/sideimage.jpg" alt="">
@@ -59,6 +62,7 @@ export default {
     background-color: white;
   }
 
+<<<<<<< HEAD
    .registerbtn{
     padding: 15px 38px;
     border-radius: 10px;
@@ -101,5 +105,17 @@ export default {
     color: #3c81f6;
     transform: translateY(-5px) scale(1);
 
+=======
+  #btn1{
+     color: white;
+     background-color: #3c81f6;
+    margin-right: 8px;
+  }
+
+  #btn2{
+     color: white;
+     background-color:#0fb881;
+    margin-right: 8px;
+>>>>>>> b00e9472f4107c405795051e9cfe2f36573cc7eb
   }
 </style>
