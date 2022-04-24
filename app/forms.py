@@ -1,7 +1,9 @@
 from msilib.schema import Class
-from models import *
+from app.models import *
 from flask_wtf import FlaskForm
-from wtforms import *
+from flask_wtf.file import FileAllowed, FileRequired, FileField
+from wtforms import TextAreaField,StringField,SubmitField,validators,ValidationError,PasswordField,IntegerField
+from wtforms.validators import DataRequired,Email
 
 class CreateUserForm(FlaskForm):
     userName = StringField('Username', [validators.Length(min=1, max=80)])
@@ -25,7 +27,7 @@ class CreateUserForm(FlaskForm):
 
     biography = StringField('Biography', validators=[validators.Length(min=0, max=140)])
     
-    photo = FileField('image',validators=[FileRequired(),FileAllowed(images, 'Images only!')])
+    photo = FileField('image',validators=[FileRequired(),FileAllowed(['jpg','jpeg','png','Images Only'])])
     
 
     FormSubmitted = False
@@ -41,15 +43,15 @@ class LoginForm(FlaskForm):
     password = PasswordField('Password', validators=[validators.DataRequired()])
 
 class CarsForm(FlaskForm):
-    model = stringField('Model', [validators.Length(min=1, max=80)])
-    make = stringField('Make', [validators.Length(min=1, max=80)])
+    model = StringField('Model', [validators.Length(min=1, max=80)])
+    make = StringField('Make', [validators.Length(min=1, max=80)])
     description = TextAreaField('Description', validators=[DataRequired()])
     price = IntegerField('Price', validators=[DataRequired()])
     colour = StringField('Colour', validators=[DataRequired()])
     car_type = StringField('Car type', validators=[DataRequired()])
     transmission = StringField('Transmission', validators=[DataRequired()])
     year = StringField('Year', validators=[DataRequired()])
-    photo = FileField('image',validators=[FileRequired(),FileAllowed(images, 'Images only!')])
+    photo = FileField('image',validators=[FileRequired(),FileAllowed(['jpg','jpeg','png','Images Only'])])
 
 class SearchForm(FlaskForm):
     searched = StringField('Make', [DataRequired()])

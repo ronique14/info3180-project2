@@ -5,8 +5,8 @@ Werkzeug Documentation:  https://werkzeug.palletsprojects.com/
 This file creates your application.
 """
 
-from crypt import methods
-from lib2to3.pytree import _Results
+# from crypt import methods
+# from lib2to3.pytree import _Results
 from app import app,db,login_manager
 from flask import render_template, request, jsonify, send_file,redirect, url_for, flash
 from flask_login import login_user, logout_user, current_user, login_required
@@ -98,7 +98,7 @@ def newcar():
         db.session.commit()
     return render_template('addCar.html', form=myform)
 
-@app.route('api/car/<car_id>', methods=["GET"])
+@app.route('/api/car/<car_id>', methods=["GET"])
 def car_detail(car_id):
 
     car_dets = Car.query.get(car_id)
