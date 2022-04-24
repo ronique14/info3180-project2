@@ -29,6 +29,9 @@
               <RouterLink class="nav-link" to="/explore">Explore</RouterLink>
             </li>
             <li class="nav-item">
+              <RouterLink class="nav-link" to="/users/:user_id">My Profile</RouterLink>
+            </li>
+            <li class="nav-item">
               <RouterLink class="nav-link" to="/register">Register</RouterLink>
             </li>
             <li class="nav-item">
