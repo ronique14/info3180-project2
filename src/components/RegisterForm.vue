@@ -1,6 +1,6 @@
 <template>
     <h2 class="pg-header" id="pheader">Register New User</h2>
-    <div class="card text-left" style="width: 48rem; " id= "card">
+    <div class="card text-left" style="width: 48rem;" id="card">
         <div class="card-body">
             <form id= "RegisterForm" >
                 <div class="row mb-2">
@@ -95,7 +95,7 @@ export default {
 
             .then(function (data) {
                 // display a success message
-                console.log("worked success")
+                console.log("success")
                 console.log(data);
             })
 

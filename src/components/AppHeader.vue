@@ -2,7 +2,7 @@
   <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
       <div class="container-fluid">
-        <a class="navbar-brand" href="/">Lab 7</a>
+        <a class="navbar-brand" href="/">United Auto Sales</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -22,8 +22,11 @@
             <li class="nav-item">
               <RouterLink class="nav-link" to="/about">About</RouterLink>
             </li>
-             <li class="nav-item">
+            <li class="nav-item">
               <RouterLink class="nav-link" to="/register">Register</RouterLink>
+            </li>
+            <li class="nav-item">
+              <RouterLink class="nav-link" to="/login">Login</RouterLink>
             </li>
           </ul>
         </div>
