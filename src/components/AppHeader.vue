@@ -31,10 +31,13 @@
             <li class="nav-item">
               <RouterLink class="nav-link" to="/users/:user_id">My Profile</RouterLink>
             </li>
-            <li class="nav-item">
+          </ul>
+
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item" id="end">
               <RouterLink class="nav-link" to="/register">Register</RouterLink>
             </li>
-            <li class="nav-item">
+            <li class="nav-item ml-auto" id="end">
               <RouterLink class="nav-link" to="/login">Login</RouterLink>
             </li>
           </ul>
