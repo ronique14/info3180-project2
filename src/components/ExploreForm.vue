@@ -1,6 +1,6 @@
 <template>
-    <h2 class="pg-header" id="pheader">Explore</h2>
-    <div class="card text-left" style="width: 40rem;" id="card">
+    <h2 class="pg-header" id="exploreheader">Explore</h2>
+    <div class="card text-left" style="width: 40rem;" id="explorecard">
         <div class="card-body">
             <form id= "ExploreForm" >
                 <div class="row mb-2">
@@ -18,7 +18,7 @@
                     </div>
                     <div class="col-1">
                         <label for="search"></label>
-                        <button id="btn1" type="submit" name="submit" class="btn btn-primary" @click.prevent="search">Search</button>
+                        <button id="searchbtn" type="submit" name="submit" class="btn btn-primary" @click.prevent="search">Search</button>
                     </div>
                 </div>
             </form>
@@ -39,5 +39,26 @@ export default {
 </script>
 
 <style>
+
+    #exploreheader{
+        font-size: 2em;
+        font-weight: bold;
+        text-align:center;
+        margin-top:2% ;
+      }
+
+ #explorecard{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+     #searchbtn{
+        background-color: #0fb881;
+        border: 1px solid transparent;
+        width:400%;
+    }
 
 </style>

@@ -10,6 +10,8 @@ import ExploreForm from '../components/ExploreForm.vue'
 export default({
     data() {
         return{
+            make: '',
+            model: '',
 
         }        
     },

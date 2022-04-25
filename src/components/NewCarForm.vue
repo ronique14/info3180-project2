@@ -1,7 +1,7 @@
 <template>
     
-    <h2 class="pg-header" id="pheader">Add New Car</h2>
-    <div class="card text-left" style="width: 48rem;" id="card">
+    <h2 class="pg-header" id="newcarheader">Add New Car</h2>
+    <div class="card text-left" style="width: 48rem;" id="newcarcard">
         <div class="card-body">
             <form id="NewCar" >
                 <div class="alert alert-success" role="alert" v-if="on && success" v-for="message in messages">
@@ -88,7 +88,7 @@
                 <br>
 
                 <div class="col-12">
-                    <button id="btn1" typve="submit" name="submit" class="btn btn-primary" @click.prevent="save">Save</button>
+                    <button id="savebtn" typve="submit" name="submit" class="btn btn-primary" @click.prevent="save">Save</button>
                 </div>
             </form>
         </div>
@@ -174,9 +174,12 @@ export default{
 </script>
 
 <style>
-    .pg-header{
+      #newcarheader{
         font-size: 2em;
-    }
+        font-weight: bold;
+         text-align:center;
+        margin-top:2% ;
+      }
 
     .register-form {
         width: 350px;
@@ -185,5 +188,18 @@ export default{
     label {
         font-weight: bold;
         font-size: 0.8em;
+    }
+
+    #savebtn{
+        background-color: #0fb881;
+        border: 1px solid transparent;
+    }
+
+    #newcarcard{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
 </style>
