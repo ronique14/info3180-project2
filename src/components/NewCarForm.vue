@@ -1,8 +1,17 @@
 <template>
+    
     <h2 class="pg-header" id="pheader">Add New Car</h2>
     <div class="card text-left" style="width: 48rem;" id="card">
         <div class="card-body">
             <form id="NewCar" >
+                <div class="alert alert-success" role="alert" v-if="on && success" v-for="message in messages">
+                {{message}}
+                </div>
+                <div class="alert alert-danger" role="alert"  v-if="on && !success" >
+                    <div v-for="message in messages">
+                        <li> {{message}}</li>
+                    </div>
+                </div>
                 <div class="row mb-2">
                     <div class="col-auto">
                         <div class="form-group">
@@ -99,8 +108,66 @@ export default{
             type: '',
             transmission: '',
             description: '',
-            photo:''          
+            photo:'',
+            
+            on: false,
+            success: false,
+            message: []
         }
+    },
+    methods:{
+        Car(){
+            let newcarForm = document.getElementById('NewCar');
+            let formdata = new FormData(newcarForm);
+
+            fetch("/api/cars/new", {
+                method: 'POST',
+                body: formdata,
+                headers: {'X-CSRFToken':this.csrf_token}
+            })
+            .then(function (response){
+                console.log(response)
+                return response.json();
+            })
+            .then(function (data){
+                console.log(data);
+
+                console.log(data.console.errors);
+                if(data.errors!=undefined){
+                    console.log(data)
+                    let nextjson=data.errors.replace("['","");
+                    nextjson=nextjson.replace("']", "");
+                    nextjson=nextjson.replace("'", "");
+                    nextjson=nextjson.replace("'E", "E");
+                    self.messages=nextjson.split(",");
+                    self.on=true;
+                    self.success=false;
+                    console.log(self.messages);
+                }else{
+                    console.log(data)
+                    self.messages=[data.message];
+                    self.on=true;
+                    self.success=true;                    
+                }
+            })
+            .catch(function(error){
+                console.log(error);
+            });
+
+        },
+        getCsrfToken()
+            {
+            let self = this;
+                fetch('/api/csrf-token')
+                    .then((response) => response.json())
+                    .then((data) => {
+                        console.log(data);
+                        self.csrf_token = data.csrf_token;
+                })
+            }
+    },
+    created() {
+        this.getCsrfToken();
     },
 
 }

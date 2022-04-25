@@ -96,7 +96,12 @@ def newcar():
         car_form = Car(model,make,description,price,colour,car_type,transmission,year,photo)
         db.session.add(car_form)
         db.session.commit()
-    return render_template('addCar.html', form=myform)
+        return '{\
+                "message":"Car Successfully Added"\
+                }'
+    return '{\
+        "errors": "%s"\
+    }'% form_errors(myform)
 
 @app.route('/api/car/<car_id>', methods=["GET"])
 def car_detail(car_id):

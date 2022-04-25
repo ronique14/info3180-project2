@@ -6,6 +6,7 @@ from flask_migrate import Migrate
 
 app = Flask(__name__)
 app.config.from_object(Config)
+app.config['UPLOAD_FOLDER']='./app/upload'
 
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
