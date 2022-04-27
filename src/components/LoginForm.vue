@@ -27,9 +27,8 @@
 </template>
 
 <script>
-// import store from '@/main.js'; 
-
-export default {
+import store from '@/main.js';
+ export default {
     data() {
         return {
             csrf_token: '',
@@ -40,7 +39,7 @@ export default {
     
     methods: {
         login(){
-            console.log()
+            
             let loginForm = document.getElementById('LoginForm');
             let formdata = new FormData(loginForm);
 

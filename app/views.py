@@ -29,49 +29,57 @@ def index():
 def register():
     """Accepts user information and saves it to the database."""
     form = CreateUserForm()
-    if request.method == "POST":
-        form.FormSubmitted = True
+     
         
-        if form.validate_on_submit():            
-                
-                NewProfile = UserProfile(form.username.data, form.password.data, form.name.data, 
-                                         form.email.data, form.location.data, form.biography.data,
-                                          form.photo.data)
+    if form.validate_on_submit() and request.method == "POST" :
+        username=form.username.data
+        password=form.password.data
+        name=form.name.data                          
+        email=form.email.data
+        location=form.location.data 
+        biography=form.biography.data
+        photo=form.photo.data 
+        filename = secure_filename(photo.filename)
+        photo.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+                    
+            
+        NewProfile = UserProfile(username=username,password=password,name=name,email=email,
+                                    location=location, biography=biography,photo=filename)
 
-                db.session.add(NewProfile)
-                db.session.commit()
+        db.session.add(NewProfile)
+        db.session.commit()
 
-                flash('Profile created and successfully saved', 'success')
-                login_user(NewProfile)
-                return redirect(url_for('profile'))        
+        flash('Profile created and successfully saved', 'success')
+        #login_user(NewProfile)
+        #return redirect(url_for('profile'))        
 
-    return render_template('register.html',form=form)
+    #return render_template('register.html',form=form)
 
 @app.route('/api/auth/login', methods=["GET", "POST"])
 def login():
     form = LoginForm()
-    if request.method == "POST":
-        # change this to actually validate the entire form submission
-        # and not just one field
-        if form.validate_on_submit():
-            # Get the username and password values from the form.
-            username = form.username.data
-            password = form.password.data
-            
-            user = UserProfile.query.filter_by(username=username).first()
-            if user is not None and check_password_hash(user.password, password):
+    
+    # change this to actually validate the entire form submission
+    # and not just one field
+    if form.validate_on_submit() and request.method == "POST":
+        # Get the username and password values from the form.
+        username = form.username.data
+        password = form.password.data
+        
+        user = UserProfile.query.filter_by(username=username).first()
+        if user is not None and check_password_hash(user.password, password):
 
-                login_user(user)
-                flash('Logged in successfully.', 'success')
-                return redirect(url_for('secure_page'))
-            else:
-                flash('Username or Password is incorrect.', 'danger')
+            login_user(user)
+            flash('Logged in successfully.', 'success')
+            return redirect(url_for('secure_page'))
+        else:
+            flash('Username or Password is incorrect.', 'danger')
 
 
-            # remember to flash a message to the user
-            return redirect(url_for("home"))  # they should be redirected to a secure-page route instead
-    flash_errors(form)
-    return render_template("login.html", form=form)
+        # remember to flash a message to the user
+        #return redirect(url_for("home"))  # they should be redirected to a secure-page route instead
+    #flash_errors(form)
+    #return render_template("login.html", form=form)
 
 @app.route('/api/cars', methods=["GET"])
 def cars():

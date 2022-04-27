@@ -23,7 +23,7 @@ class CreateUserForm(FlaskForm):
 
     email = StringField('Email',[Email(message=('Not a valid email address.')), DataRequired()])
 
-    Location = StringField('Address', validators=[DataRequired()])
+    location = StringField('Address', validators=[DataRequired()])
 
     biography = StringField('Biography', validators=[validators.Length(min=0, max=140)])
     
