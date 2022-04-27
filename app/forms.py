@@ -6,7 +6,7 @@ from wtforms import TextAreaField,StringField,SubmitField,validators,ValidationE
 from wtforms.validators import DataRequired,Email
 
 class CreateUserForm(FlaskForm):
-    userName = StringField('Username', [validators.Length(min=1, max=80)])
+    username = StringField('Username', [validators.Length(min=1, max=80)])
     
     password = PasswordField('New Password', [
         validators.DataRequired(),
